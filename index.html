@@ -1,0 +1,1963 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mercearia Gomes | Gestão</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- FUNDO -->
+    <div class="ambient-bg">
+        <div class="orb orb-one"></div>
+        <div class="orb orb-two"></div>
+        <div class="grid-bg"></div>
+    </div>
+
+
+    <!-- OVERLAY MOBILE -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+    <div class="app">
+
+        <!-- =========================
+             SIDEBAR
+        ========================== -->
+
+        <aside class="sidebar" id="sidebar">
+
+            <div class="brand">
+
+                <div class="brand-logo">
+                    G
+                </div>
+
+                <div class="brand-info">
+                    <strong>Mercearia</strong>
+                    <span>Gomes</span>
+                </div>
+
+            </div>
+
+
+            <div class="menu-title">
+                MENU PRINCIPAL
+            </div>
+
+
+            <nav class="navigation">
+
+                <button class="nav-item active" data-page="dashboard">
+
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z" />
+                        </svg>
+                    </span>
+
+                    <span>Dashboard</span>
+
+                </button>
+
+
+                <button class="nav-item" data-page="vendas">
+
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M4 19V9M10 19V5M16 19v-7M22 19V3" />
+                        </svg>
+                    </span>
+
+                    <span>Vendas</span>
+
+                </button>
+
+
+                <button class="nav-item" data-page="produtos">
+
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M4 7h16v13H4zM7 4h10v3H7z" />
+                        </svg>
+                    </span>
+
+                    <span>Produtos</span>
+
+                    <span class="nav-badge">
+                        128
+                    </span>
+
+                </button>
+
+
+                <button class="nav-item" data-page="clientes">
+
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="8" r="4" />
+                            <path d="M4 21c0-4 3-7 8-7s8 3 8 7" />
+                        </svg>
+                    </span>
+
+                    <span>Clientes</span>
+
+                </button>
+
+
+                <button class="nav-item" data-page="financeiro">
+
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M3 6h18v12H3z" />
+                            <path d="M7 10h4M7 14h7" />
+                        </svg>
+                    </span>
+
+                    <span>Financeiro</span>
+
+                </button>
+
+            </nav>
+
+
+            <div class="menu-title secondary-title">
+                SISTEMA
+            </div>
+
+
+            <nav class="navigation">
+
+                <button class="nav-item" data-page="configuracoes">
+
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="3" />
+                            <path
+                                d="M19 12a7 7 0 0 0-.1-1l2-1.5-2-3.5-2.4 1a8 8 0 0 0-1.7-1L14.5 3h-5L9 6a8 8 0 0 0-1.7 1L5 6 3 9.5 5 11a7 7 0 0 0 0 2l-2 1.5L5 18l2.3-1a8 8 0 0 0 1.7 1l.5 3h5l.5-3a8 8 0 0 0 1.7-1l2.3 1 2-3.5L19 13a7 7 0 0 0 0-1z" />
+                        </svg>
+                    </span>
+
+                    <span>Configurações</span>
+
+                </button>
+
+            </nav>
+
+
+            <div class="sidebar-footer">
+
+                <div class="system-card">
+
+                    <span class="status-dot"></span>
+
+                    <div>
+                        <strong>Sistema online</strong>
+                        <span>Serviços funcionando</span>
+                    </div>
+
+                </div>
+
+
+                <div class="profile">
+
+                    <div class="profile-avatar">
+                        G
+                    </div>
+
+                    <div class="profile-info">
+                        <strong>Gomes</strong>
+                        <span>Administrador</span>
+                    </div>
+
+                    <button class="profile-more">
+                        •••
+                    </button>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =========================
+             CONTEÚDO
+        ========================== -->
+
+        <main class="main">
+
+            <!-- TOPBAR -->
+
+            <header class="topbar">
+
+                <div class="topbar-left">
+
+                    <button class="mobile-menu" id="mobileMenu">
+                        ☰
+                    </button>
+
+                    <div class="breadcrumb">
+                        <span>Mercearia Gomes</span>
+                        <b>/</b>
+                        <strong id="pageName">
+                            Dashboard
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="topbar-actions">
+
+                    <div class="global-search">
+
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="11" cy="11" r="7" />
+                            <path d="m20 20-4-4" />
+                        </svg>
+
+                        <input
+                            type="text"
+                            id="globalSearch"
+                            placeholder="Buscar no sistema...">
+
+                        <kbd>Ctrl K</kbd>
+
+                    </div>
+
+
+                    <button class="top-icon notification-button">
+
+                        <svg viewBox="0 0 24 24">
+                            <path d="M18 8a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9" />
+                            <path d="M10 21h4" />
+                        </svg>
+
+                        <span class="notification-dot"></span>
+
+                    </button>
+
+
+                    <button class="primary-button" id="openSaleModal">
+
+                        <span>＋</span>
+
+                        <span class="button-text">
+                            Nova venda
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </header>
+
+
+            <!-- =========================
+                 DASHBOARD
+            ========================== -->
+
+            <section class="page active" id="dashboard">
+
+                <div class="page-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            VISÃO GERAL
+                        </span>
+
+                        <h1>
+                            Painel de controle
+                        </h1>
+
+                        <p>
+                            Acompanhe o desempenho da sua mercearia em tempo real.
+                        </p>
+
+                    </div>
+
+
+                    <div class="date-box">
+
+                        <span>
+                            HOJE
+                        </span>
+
+                        <strong id="currentDate">
+                            --
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- KPIs -->
+
+                <div class="metrics-grid">
+
+                    <article class="metric-card reveal">
+
+                        <div class="metric-header">
+
+                            <div class="metric-icon blue-icon">
+                                R$
+                            </div>
+
+                            <span class="growth positive">
+                                ↗ 12,5%
+                            </span>
+
+                        </div>
+
+                        <span class="metric-title">
+                            FATURAMENTO HOJE
+                        </span>
+
+                        <strong class="metric-value">
+                            R$ 1.250<span>,00</span>
+                        </strong>
+
+                        <div class="metric-bottom">
+                            <span class="live-dot"></span>
+                            Atualizado agora
+                        </div>
+
+                    </article>
+
+
+                    <article class="metric-card reveal">
+
+                        <div class="metric-header">
+
+                            <div class="metric-icon green-icon">
+                                ↗
+                            </div>
+
+                            <span class="growth positive">
+                                ↗ 8,4%
+                            </span>
+
+                        </div>
+
+                        <span class="metric-title">
+                            LUCRO ESTIMADO
+                        </span>
+
+                        <strong class="metric-value">
+                            R$ 487<span>,50</span>
+                        </strong>
+
+                        <div class="metric-bottom">
+                            Margem estimada de 39%
+                        </div>
+
+                    </article>
+
+
+                    <article class="metric-card reveal">
+
+                        <div class="metric-header">
+
+                            <div class="metric-icon purple-icon">
+                                ✓
+                            </div>
+
+                            <span class="growth neutral">
+                                +5 hoje
+                            </span>
+
+                        </div>
+
+                        <span class="metric-title">
+                            VENDAS REALIZADAS
+                        </span>
+
+                        <strong class="metric-value">
+                            32
+                        </strong>
+
+                        <div class="metric-bottom">
+                            Ticket médio R$ 39,06
+                        </div>
+
+                    </article>
+
+
+                    <article class="metric-card reveal">
+
+                        <div class="metric-header">
+
+                            <div class="metric-icon orange-icon">
+                                !
+                            </div>
+
+                            <span class="growth warning">
+                                4 baixos
+                            </span>
+
+                        </div>
+
+                        <span class="metric-title">
+                            PRODUTOS EM ESTOQUE
+                        </span>
+
+                        <strong class="metric-value">
+                            128
+                        </strong>
+
+                        <div class="metric-bottom">
+                            4 produtos precisam de atenção
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+                <!-- LINHA 2 -->
+
+                <div class="dashboard-main-grid">
+
+                    <!-- GRÁFICO -->
+
+                    <article class="panel chart-panel reveal">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <span class="panel-label">
+                                    PERFORMANCE
+                                </span>
+
+                                <h2>
+                                    Vendas da semana
+                                </h2>
+
+                            </div>
+
+
+                            <div class="period-selector">
+
+                                <button class="period active">
+                                    7D
+                                </button>
+
+                                <button class="period">
+                                    30D
+                                </button>
+
+                                <button class="period">
+                                    90D
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="chart-info">
+
+                            <div>
+
+                                <span>
+                                    Total no período
+                                </span>
+
+                                <strong>
+                                    R$ 7.842,50
+                                </strong>
+
+                            </div>
+
+                            <span class="chart-growth">
+                                ↗ 18,2%
+                            </span>
+
+                        </div>
+
+
+                        <div class="chart">
+
+                            <div class="chart-horizontal-lines">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+
+
+                            <div class="chart-bars">
+
+                                <div class="bar-group">
+                                    <div class="bar" style="--bar-height: 42%; --delay: .05s"></div>
+                                    <span>SEG</span>
+                                </div>
+
+                                <div class="bar-group">
+                                    <div class="bar" style="--bar-height: 62%; --delay: .1s"></div>
+                                    <span>TER</span>
+                                </div>
+
+                                <div class="bar-group">
+                                    <div class="bar" style="--bar-height: 51%; --delay: .15s"></div>
+                                    <span>QUA</span>
+                                </div>
+
+                                <div class="bar-group">
+                                    <div class="bar" style="--bar-height: 74%; --delay: .2s"></div>
+                                    <span>QUI</span>
+                                </div>
+
+                                <div class="bar-group">
+                                    <div class="bar" style="--bar-height: 65%; --delay: .25s"></div>
+                                    <span>SEX</span>
+                                </div>
+
+                                <div class="bar-group">
+                                    <div class="bar featured-bar" style="--bar-height: 92%; --delay: .3s"></div>
+                                    <span>SÁB</span>
+                                </div>
+
+                                <div class="bar-group">
+                                    <div class="bar" style="--bar-height: 57%; --delay: .35s"></div>
+                                    <span>DOM</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- ATIVIDADES -->
+
+                    <article class="panel reveal">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <span class="panel-label live-label">
+                                    <span></span>
+                                    AO VIVO
+                                </span>
+
+                                <h2>
+                                    Atividades recentes
+                                </h2>
+
+                            </div>
+
+                            <button class="more-button">
+                                •••
+                            </button>
+
+                        </div>
+
+
+                        <div class="activity-list">
+
+                            <div class="activity-item">
+
+                                <div class="activity-icon green-icon">
+                                    R$
+                                </div>
+
+                                <div class="activity-info">
+
+                                    <strong>
+                                        Nova venda
+                                    </strong>
+
+                                    <span>
+                                        João Silva • PIX
+                                    </span>
+
+                                </div>
+
+                                <div class="activity-value">
+
+                                    <strong>
+                                        R$ 120,00
+                                    </strong>
+
+                                    <span>
+                                        Agora
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="activity-item">
+
+                                <div class="activity-icon purple-icon">
+                                    +
+                                </div>
+
+                                <div class="activity-info">
+
+                                    <strong>
+                                        Novo cliente
+                                    </strong>
+
+                                    <span>
+                                        Ana Oliveira
+                                    </span>
+
+                                </div>
+
+                                <div class="activity-value">
+
+                                    <span>
+                                        12 min
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="activity-item">
+
+                                <div class="activity-icon orange-icon">
+                                    !
+                                </div>
+
+                                <div class="activity-info">
+
+                                    <strong>
+                                        Estoque baixo
+                                    </strong>
+
+                                    <span>
+                                        Arroz 5kg
+                                    </span>
+
+                                </div>
+
+                                <div class="activity-value">
+
+                                    <strong class="orange-text">
+                                        3 un.
+                                    </strong>
+
+                                    <span>
+                                        24 min
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="activity-item">
+
+                                <div class="activity-icon blue-icon">
+                                    R$
+                                </div>
+
+                                <div class="activity-info">
+
+                                    <strong>
+                                        Pagamento recebido
+                                    </strong>
+
+                                    <span>
+                                        Maria Santos
+                                    </span>
+
+                                </div>
+
+                                <div class="activity-value">
+
+                                    <strong>
+                                        R$ 85,50
+                                    </strong>
+
+                                    <span>
+                                        38 min
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <button class="soft-button" data-page="vendas">
+                            Ver todas as vendas
+                            <span>→</span>
+                        </button>
+
+                    </article>
+
+                </div>
+
+
+                <!-- LINHA 3 -->
+
+                <div class="dashboard-bottom-grid">
+
+                    <!-- CONTAS -->
+
+                    <article class="panel reveal">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <span class="panel-label">
+                                    FINANCEIRO
+                                </span>
+
+                                <h2>
+                                    Contas a receber
+                                </h2>
+
+                            </div>
+
+                            <button class="outline-button" data-page="financeiro">
+                                Ver todas
+                            </button>
+
+                        </div>
+
+
+                        <div class="finance-highlight">
+
+                            <div>
+
+                                <span>
+                                    Total em aberto
+                                </span>
+
+                                <strong>
+                                    R$ 435,50
+                                </strong>
+
+                            </div>
+
+                            <div class="pending-count">
+
+                                <strong>
+                                    3
+                                </strong>
+
+                                <span>
+                                    pendentes
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="mini-table">
+
+                            <div class="mini-row mini-header">
+
+                                <span>CLIENTE</span>
+                                <span>VENCIMENTO</span>
+                                <span>VALOR</span>
+                                <span>STATUS</span>
+
+                            </div>
+
+
+                            <div class="mini-row">
+
+                                <div class="customer">
+
+                                    <span class="avatar">
+                                        JS
+                                    </span>
+
+                                    <span>
+                                        João Silva
+                                    </span>
+
+                                </div>
+
+                                <span>
+                                    25/09/2026
+                                </span>
+
+                                <strong>
+                                    R$ 120,00
+                                </strong>
+
+                                <span class="status-badge warning-badge">
+                                    Próxima
+                                </span>
+
+                            </div>
+
+
+                            <div class="mini-row">
+
+                                <div class="customer">
+
+                                    <span class="avatar purple-avatar">
+                                        MS
+                                    </span>
+
+                                    <span>
+                                        Maria Santos
+                                    </span>
+
+                                </div>
+
+                                <span>
+                                    28/09/2026
+                                </span>
+
+                                <strong>
+                                    R$ 85,50
+                                </strong>
+
+                                <span class="status-badge success-badge">
+                                    Em dia
+                                </span>
+
+                            </div>
+
+
+                            <div class="mini-row">
+
+                                <div class="customer">
+
+                                    <span class="avatar cyan-avatar">
+                                        PS
+                                    </span>
+
+                                    <span>
+                                        Pedro Souza
+                                    </span>
+
+                                </div>
+
+                                <span>
+                                    30/09/2026
+                                </span>
+
+                                <strong>
+                                    R$ 230,00
+                                </strong>
+
+                                <span class="status-badge success-badge">
+                                    Em dia
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- ESTOQUE -->
+
+                    <article class="panel reveal">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <span class="panel-label">
+                                    ESTOQUE
+                                </span>
+
+                                <h2>
+                                    Atenção necessária
+                                </h2>
+
+                            </div>
+
+                            <button class="outline-button" data-page="produtos">
+                                Produtos
+                            </button>
+
+                        </div>
+
+
+                        <div class="stock-list">
+
+                            <div class="stock-item">
+
+                                <div class="product-emoji">
+                                    🍚
+                                </div>
+
+                                <div class="stock-info">
+
+                                    <strong>
+                                        Arroz 5kg
+                                    </strong>
+
+                                    <span>
+                                        Mercearia
+                                    </span>
+
+                                </div>
+
+                                <div class="stock-number danger-text">
+                                    3
+                                    <span>un.</span>
+                                </div>
+
+                            </div>
+
+
+                            <div class="stock-item">
+
+                                <div class="product-emoji">
+                                    ☕
+                                </div>
+
+                                <div class="stock-info">
+
+                                    <strong>
+                                        Café 500g
+                                    </strong>
+
+                                    <span>
+                                        Bebidas
+                                    </span>
+
+                                </div>
+
+                                <div class="stock-number orange-text">
+                                    5
+                                    <span>un.</span>
+                                </div>
+
+                            </div>
+
+
+                            <div class="stock-item">
+
+                                <div class="product-emoji">
+                                    🧴
+                                </div>
+
+                                <div class="stock-info">
+
+                                    <strong>
+                                        Óleo 900ml
+                                    </strong>
+
+                                    <span>
+                                        Mercearia
+                                    </span>
+
+                                </div>
+
+                                <div class="stock-number orange-text">
+                                    7
+                                    <span>un.</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 VENDAS
+            ========================== -->
+
+            <section class="page" id="vendas">
+
+                <div class="page-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            COMERCIAL
+                        </span>
+
+                        <h1>
+                            Vendas
+                        </h1>
+
+                        <p>
+                            Acompanhe e gerencie as vendas realizadas.
+                        </p>
+
+                    </div>
+
+                    <button class="primary-button open-sale-button">
+                        <span>＋</span>
+                        Nova venda
+                    </button>
+
+                </div>
+
+
+                <div class="summary-grid">
+
+                    <article class="summary-card">
+
+                        <span>
+                            Faturamento mensal
+                        </span>
+
+                        <strong>
+                            R$ 18.450,00
+                        </strong>
+
+                        <small class="positive-text">
+                            ↗ 12,4% este mês
+                        </small>
+
+                    </article>
+
+
+                    <article class="summary-card">
+
+                        <span>
+                            Vendas realizadas
+                        </span>
+
+                        <strong>
+                            326
+                        </strong>
+
+                        <small>
+                            32 realizadas hoje
+                        </small>
+
+                    </article>
+
+
+                    <article class="summary-card">
+
+                        <span>
+                            Ticket médio
+                        </span>
+
+                        <strong>
+                            R$ 56,59
+                        </strong>
+
+                        <small class="positive-text">
+                            ↗ 4,8% de aumento
+                        </small>
+
+                    </article>
+
+                </div>
+
+
+                <article class="content-panel">
+
+                    <div class="content-toolbar">
+
+                        <div>
+
+                            <h2>
+                                Histórico de vendas
+                            </h2>
+
+                            <p>
+                                Últimas movimentações registradas.
+                            </p>
+
+                        </div>
+
+
+                        <div class="local-search">
+
+                            <span>⌕</span>
+
+                            <input
+                                type="text"
+                                class="table-search"
+                                placeholder="Buscar venda...">
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="data-table">
+
+                        <div class="data-row data-header">
+
+                            <span>VENDA</span>
+                            <span>CLIENTE</span>
+                            <span>DATA</span>
+                            <span>PAGAMENTO</span>
+                            <span>VALOR</span>
+                            <span>STATUS</span>
+
+                        </div>
+
+
+                        <div class="data-row searchable-row">
+
+                            <strong>#1024</strong>
+
+                            <span>
+                                João Silva
+                            </span>
+
+                            <span>
+                                Hoje, 14:32
+                            </span>
+
+                            <span>
+                                PIX
+                            </span>
+
+                            <strong>
+                                R$ 120,00
+                            </strong>
+
+                            <span class="status-badge success-badge">
+                                Concluída
+                            </span>
+
+                        </div>
+
+
+                        <div class="data-row searchable-row">
+
+                            <strong>#1023</strong>
+
+                            <span>
+                                Maria Santos
+                            </span>
+
+                            <span>
+                                Hoje, 13:45
+                            </span>
+
+                            <span>
+                                Cartão
+                            </span>
+
+                            <strong>
+                                R$ 85,50
+                            </strong>
+
+                            <span class="status-badge success-badge">
+                                Concluída
+                            </span>
+
+                        </div>
+
+
+                        <div class="data-row searchable-row">
+
+                            <strong>#1022</strong>
+
+                            <span>
+                                Pedro Souza
+                            </span>
+
+                            <span>
+                                Hoje, 12:20
+                            </span>
+
+                            <span>
+                                Dinheiro
+                            </span>
+
+                            <strong>
+                                R$ 230,00
+                            </strong>
+
+                            <span class="status-badge success-badge">
+                                Concluída
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- =========================
+                 PRODUTOS
+            ========================== -->
+
+            <section class="page" id="produtos">
+
+                <div class="page-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            ESTOQUE
+                        </span>
+
+                        <h1>
+                            Produtos
+                        </h1>
+
+                        <p>
+                            Gerencie preços, produtos e estoque.
+                        </p>
+
+                    </div>
+
+                    <button class="primary-button">
+                        <span>＋</span>
+                        Novo produto
+                    </button>
+
+                </div>
+
+
+                <div class="summary-grid">
+
+                    <article class="summary-card">
+
+                        <span>
+                            Produtos cadastrados
+                        </span>
+
+                        <strong>
+                            128
+                        </strong>
+
+                        <small>
+                            Total no sistema
+                        </small>
+
+                    </article>
+
+
+                    <article class="summary-card">
+
+                        <span>
+                            Estoque baixo
+                        </span>
+
+                        <strong>
+                            4
+                        </strong>
+
+                        <small class="orange-text">
+                            Precisam de atenção
+                        </small>
+
+                    </article>
+
+
+                    <article class="summary-card">
+
+                        <span>
+                            Valor em estoque
+                        </span>
+
+                        <strong>
+                            R$ 14.820
+                        </strong>
+
+                        <small>
+                            Valor estimado
+                        </small>
+
+                    </article>
+
+                </div>
+
+
+                <article class="content-panel">
+
+                    <div class="content-toolbar">
+
+                        <div>
+
+                            <h2>
+                                Estoque
+                            </h2>
+
+                            <p>
+                                Produtos cadastrados na mercearia.
+                            </p>
+
+                        </div>
+
+
+                        <div class="local-search">
+
+                            <span>⌕</span>
+
+                            <input
+                                type="text"
+                                class="product-search"
+                                placeholder="Buscar produto...">
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="products-grid">
+
+                        <article class="product-card searchable-product">
+
+                            <div class="product-image">
+                                🍚
+                            </div>
+
+                            <span class="product-category">
+                                ALIMENTOS
+                            </span>
+
+                            <h3>
+                                Arroz 5kg
+                            </h3>
+
+                            <strong>
+                                R$ 29,90
+                            </strong>
+
+                            <span class="product-status danger-product">
+                                3 unidades
+                            </span>
+
+                        </article>
+
+
+                        <article class="product-card searchable-product">
+
+                            <div class="product-image">
+                                ☕
+                            </div>
+
+                            <span class="product-category">
+                                BEBIDAS
+                            </span>
+
+                            <h3>
+                                Café 500g
+                            </h3>
+
+                            <strong>
+                                R$ 18,90
+                            </strong>
+
+                            <span class="product-status warning-product">
+                                5 unidades
+                            </span>
+
+                        </article>
+
+
+                        <article class="product-card searchable-product">
+
+                            <div class="product-image">
+                                🧴
+                            </div>
+
+                            <span class="product-category">
+                                ALIMENTOS
+                            </span>
+
+                            <h3>
+                                Óleo 900ml
+                            </h3>
+
+                            <strong>
+                                R$ 8,90
+                            </strong>
+
+                            <span class="product-status warning-product">
+                                7 unidades
+                            </span>
+
+                        </article>
+
+
+                        <article class="product-card searchable-product">
+
+                            <div class="product-image">
+                                🥛
+                            </div>
+
+                            <span class="product-category">
+                                LATICÍNIOS
+                            </span>
+
+                            <h3>
+                                Leite 1L
+                            </h3>
+
+                            <strong>
+                                R$ 5,49
+                            </strong>
+
+                            <span class="product-status success-product">
+                                24 unidades
+                            </span>
+
+                        </article>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- =========================
+                 CLIENTES
+            ========================== -->
+
+            <section class="page" id="clientes">
+
+                <div class="page-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            RELACIONAMENTO
+                        </span>
+
+                        <h1>
+                            Clientes
+                        </h1>
+
+                        <p>
+                            Gerencie sua base de clientes.
+                        </p>
+
+                    </div>
+
+                    <button class="primary-button">
+                        <span>＋</span>
+                        Novo cliente
+                    </button>
+
+                </div>
+
+
+                <div class="summary-grid">
+
+                    <article class="summary-card">
+                        <span>Clientes cadastrados</span>
+                        <strong>86</strong>
+                        <small>+5 neste mês</small>
+                    </article>
+
+                    <article class="summary-card">
+                        <span>Clientes ativos</span>
+                        <strong>72</strong>
+                        <small>83,7% da base</small>
+                    </article>
+
+                    <article class="summary-card">
+                        <span>Novos clientes</span>
+                        <strong>12</strong>
+                        <small>Últimos 30 dias</small>
+                    </article>
+
+                </div>
+
+
+                <article class="content-panel">
+
+                    <div class="content-toolbar">
+
+                        <div>
+                            <h2>Todos os clientes</h2>
+                            <p>Informações e histórico.</p>
+                        </div>
+
+                        <div class="local-search">
+                            <span>⌕</span>
+                            <input
+                                type="text"
+                                class="client-search"
+                                placeholder="Buscar cliente...">
+                        </div>
+
+                    </div>
+
+
+                    <div class="clients-grid">
+
+                        <article class="client-card searchable-client">
+
+                            <span class="client-avatar">
+                                JS
+                            </span>
+
+                            <h3>
+                                João Silva
+                            </h3>
+
+                            <p>
+                                Cliente desde 2024
+                            </p>
+
+                            <div class="client-total">
+                                <span>Total comprado</span>
+                                <strong>R$ 2.480</strong>
+                            </div>
+
+                        </article>
+
+
+                        <article class="client-card searchable-client">
+
+                            <span class="client-avatar purple-avatar">
+                                MS
+                            </span>
+
+                            <h3>
+                                Maria Santos
+                            </h3>
+
+                            <p>
+                                Cliente desde 2025
+                            </p>
+
+                            <div class="client-total">
+                                <span>Total comprado</span>
+                                <strong>R$ 1.860</strong>
+                            </div>
+
+                        </article>
+
+
+                        <article class="client-card searchable-client">
+
+                            <span class="client-avatar cyan-avatar">
+                                PS
+                            </span>
+
+                            <h3>
+                                Pedro Souza
+                            </h3>
+
+                            <p>
+                                Cliente desde 2023
+                            </p>
+
+                            <div class="client-total">
+                                <span>Total comprado</span>
+                                <strong>R$ 4.120</strong>
+                            </div>
+
+                        </article>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- =========================
+                 FINANCEIRO
+            ========================== -->
+
+            <section class="page" id="financeiro">
+
+                <div class="page-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            GESTÃO
+                        </span>
+
+                        <h1>
+                            Financeiro
+                        </h1>
+
+                        <p>
+                            Controle receitas, despesas e fluxo de caixa.
+                        </p>
+
+                    </div>
+
+                    <button class="primary-button">
+                        <span>＋</span>
+                        Novo lançamento
+                    </button>
+
+                </div>
+
+
+                <div class="summary-grid">
+
+                    <article class="summary-card">
+
+                        <span>
+                            Receitas
+                        </span>
+
+                        <strong>
+                            R$ 18.450
+                        </strong>
+
+                        <small class="positive-text">
+                            Este mês
+                        </small>
+
+                    </article>
+
+
+                    <article class="summary-card">
+
+                        <span>
+                            Despesas
+                        </span>
+
+                        <strong>
+                            R$ 11.280
+                        </strong>
+
+                        <small class="danger-text">
+                            Este mês
+                        </small>
+
+                    </article>
+
+
+                    <article class="summary-card">
+
+                        <span>
+                            Resultado
+                        </span>
+
+                        <strong>
+                            R$ 7.170
+                        </strong>
+
+                        <small class="positive-text">
+                            Saldo positivo
+                        </small>
+
+                    </article>
+
+                </div>
+
+
+                <article class="balance-card">
+
+                    <div class="balance-content">
+
+                        <span>
+                            SALDO ATUAL
+                        </span>
+
+                        <strong>
+                            R$ 12.840,50
+                        </strong>
+
+                        <p>
+                            Disponível em caixa
+                        </p>
+
+                    </div>
+
+                    <div class="balance-glow"></div>
+
+                </article>
+
+            </section>
+
+
+            <!-- =========================
+                 CONFIGURAÇÕES
+            ========================== -->
+
+            <section class="page" id="configuracoes">
+
+                <div class="page-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            SISTEMA
+                        </span>
+
+                        <h1>
+                            Configurações
+                        </h1>
+
+                        <p>
+                            Personalize sua experiência no sistema.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="settings-grid">
+
+                    <article class="setting-card">
+
+                        <div class="setting-icon">
+                            G
+                        </div>
+
+                        <div>
+                            <h3>Dados da empresa</h3>
+                            <p>Informações comerciais da mercearia.</p>
+                        </div>
+
+                        <span class="setting-arrow">
+                            →
+                        </span>
+
+                    </article>
+
+
+                    <article class="setting-card">
+
+                        <div class="setting-icon">
+                            U
+                        </div>
+
+                        <div>
+                            <h3>Usuários</h3>
+                            <p>Gerencie usuários e permissões.</p>
+                        </div>
+
+                        <span class="setting-arrow">
+                            →
+                        </span>
+
+                    </article>
+
+
+                    <article class="setting-card">
+
+                        <div class="setting-icon">
+                            ◐
+                        </div>
+
+                        <div>
+                            <h3>Aparência</h3>
+                            <p>Cores e personalização da interface.</p>
+                        </div>
+
+                        <span class="setting-arrow">
+                            →
+                        </span>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- =========================
+         MODAL NOVA VENDA
+    ========================== -->
+
+    <div class="modal-overlay" id="saleModal">
+
+        <div class="modal">
+
+            <div class="modal-header">
+
+                <div>
+
+                    <span class="eyebrow">
+                        PDV
+                    </span>
+
+                    <h2>
+                        Nova venda
+                    </h2>
+
+                </div>
+
+                <button class="modal-close" id="closeSaleModal">
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="saleForm">
+
+                <div class="form-group">
+
+                    <label>
+                        Cliente
+                    </label>
+
+                    <input
+                        type="text"
+                        id="saleCustomer"
+                        placeholder="Nome do cliente"
+                        required>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>
+                            Produto
+                        </label>
+
+                        <select id="saleProduct">
+
+                            <option>
+                                Arroz 5kg
+                            </option>
+
+                            <option>
+                                Café 500g
+                            </option>
+
+                            <option>
+                                Óleo 900ml
+                            </option>
+
+                            <option>
+                                Leite 1L
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Quantidade
+                        </label>
+
+                        <input
+                            type="number"
+                            value="1"
+                            min="1">
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>
+                            Pagamento
+                        </label>
+
+                        <select>
+
+                            <option>PIX</option>
+                            <option>Dinheiro</option>
+                            <option>Cartão</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Valor
+                        </label>
+
+                        <input
+                            type="text"
+                            value="R$ 29,90">
+
+                    </div>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="cancel-button"
+                        id="cancelSale">
+
+                        Cancelar
+
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="primary-button">
+
+                        Finalizar venda
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- TOAST -->
+
+    <div class="toast" id="toast">
+
+        <div class="toast-icon">
+            ✓
+        </div>
+
+        <div>
+            <strong>Venda registrada</strong>
+            <span>Operação realizada com sucesso.</span>
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
