@@ -1,912 +1,641 @@
 "use strict";
 
-
 // =========================================
-// ELEMENTOS PRINCIPAIS
+// MERCEARIA GOMES — ELEMENTOS PRINCIPAIS
 // =========================================
 
-const pages =
-    document.querySelectorAll(".page");
+const pages = document.querySelectorAll(".page");
+const navItems = document.querySelectorAll(".nav-item");
+const pageButtons = document.querySelectorAll("[data-page]");
 
-const navItems =
-    document.querySelectorAll(".nav-item");
-
-const pageButtons =
-    document.querySelectorAll("[data-page]");
-
-const pageName =
-    document.getElementById("pageName");
-
-const sidebar =
-    document.getElementById("sidebar");
-
-const mobileMenu =
-    document.getElementById("mobileMenu");
-
-const sidebarOverlay =
-    document.getElementById("sidebarOverlay");
-
+const pageName = document.getElementById("pageName");
+const sidebar = document.getElementById("sidebar");
+const mobileMenu = document.getElementById("mobileMenu");
+const sidebarOverlay = document.getElementById("sidebarOverlay");
 
 // =========================================
 // NAVEGAÇÃO ENTRE TELAS
 // =========================================
 
 function openPage(pageId) {
-
-    const targetPage =
-        document.getElementById(pageId);
+    const targetPage = document.getElementById(pageId);
 
     if (!targetPage) {
-        console.warn(
-            `Página "${pageId}" não encontrada.`
-        );
-
+        console.warn(`Página "${pageId}" não encontrada.`);
         return;
     }
 
-
-    // Remove página ativa
-
     pages.forEach(page => {
-
         page.classList.remove("active");
-
     });
-
-
-    // Remove menu ativo
 
     navItems.forEach(item => {
-
         item.classList.remove("active");
-
     });
-
-
-    // Ativa página
 
     targetPage.classList.add("active");
 
-
-    // Procura item correspondente
-
-    const activeNav =
-        document.querySelector(
-            `.nav-item[data-page="${pageId}"]`
-        );
-
+    const activeNav = document.querySelector(
+        `.nav-item[data-page="${pageId}"]`
+    );
 
     if (activeNav) {
-
         activeNav.classList.add("active");
 
-        const label =
-            activeNav.querySelector(
-                "span:nth-child(2)"
-            );
+        const label = activeNav.querySelector("span:nth-child(2)");
 
         if (label && pageName) {
-
-            pageName.textContent =
-                label.textContent.trim();
-
+            pageName.textContent = label.textContent.trim();
         }
-
     }
 
-
-    // Fecha menu mobile
-
     closeSidebar();
-
-
-    // Volta para cima
 
     window.scrollTo({
         top: 0,
         behavior: "smooth"
     });
 
-
-    // Executa animação dos elementos
-    // da nova página
-
     animateVisibleElements(targetPage);
 }
 
-
-// Botões com data-page
+// Botões que abrem as páginas
 
 pageButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        const target = button.dataset.page;
 
-    button.addEventListener(
-        "click",
-        () => {
-
-            const target =
-                button.dataset.page;
-
-            if (target) {
-
-                openPage(target);
-
-            }
-
+        if (target) {
+            openPage(target);
         }
-    );
-
+    });
 });
 
-
 // =========================================
-// SIDEBAR MOBILE
+// MENU LATERAL — CELULAR
 // =========================================
 
 function openSidebar() {
+    if (sidebar) {
+        sidebar.classList.add("open");
+    }
 
-    sidebar.classList.add("open");
-
-    sidebarOverlay.classList.add(
-        "active"
-    );
-
+    if (sidebarOverlay) {
+        sidebarOverlay.classList.add("active");
+    }
 }
-
 
 function closeSidebar() {
+    if (sidebar) {
+        sidebar.classList.remove("open");
+    }
 
-    sidebar.classList.remove("open");
-
-    sidebarOverlay.classList.remove(
-        "active"
-    );
-
+    if (sidebarOverlay) {
+        sidebarOverlay.classList.remove("active");
+    }
 }
-
 
 if (mobileMenu) {
+    mobileMenu.addEventListener("click", event => {
+        event.stopPropagation();
 
-    mobileMenu.addEventListener(
-        "click",
-        event => {
-
-            event.stopPropagation();
-
-            if (
-                sidebar.classList.contains(
-                    "open"
-                )
-            ) {
-
-                closeSidebar();
-
-            } else {
-
-                openSidebar();
-
-            }
-
+        if (sidebar && sidebar.classList.contains("open")) {
+            closeSidebar();
+        } else {
+            openSidebar();
         }
-    );
-
+    });
 }
-
 
 if (sidebarOverlay) {
-
-    sidebarOverlay.addEventListener(
-        "click",
-        closeSidebar
-    );
-
+    sidebarOverlay.addEventListener("click", closeSidebar);
 }
-
 
 // =========================================
 // DATA ATUAL
 // =========================================
 
-const currentDate =
-    document.getElementById(
-        "currentDate"
-    );
-
+const currentDate = document.getElementById("currentDate");
 
 if (currentDate) {
+    const today = new Date();
 
-    const today =
-        new Date();
+    const formattedDate = new Intl.DateTimeFormat("pt-BR", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric"
+    }).format(today);
 
-
-    const formattedDate =
-        new Intl.DateTimeFormat(
-            "pt-BR",
-            {
-                day: "2-digit",
-                month: "long",
-                year: "numeric"
-            }
-        ).format(today);
-
-
-    currentDate.textContent =
-        formattedDate;
-
+    currentDate.textContent = formattedDate;
 }
 
-
 // =========================================
-// FILTRO DO GRÁFICO
+// FILTRO VISUAL DO GRÁFICO
 // =========================================
 
-const periodButtons =
-    document.querySelectorAll(
-        ".period"
-    );
-
+const periodButtons = document.querySelectorAll(".period");
 
 periodButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        periodButtons.forEach(item => {
+            item.classList.remove("active");
+        });
 
-    button.addEventListener(
-        "click",
-        () => {
-
-            periodButtons.forEach(
-                item => {
-
-                    item.classList.remove(
-                        "active"
-                    );
-
-                }
-            );
-
-
-            button.classList.add(
-                "active"
-            );
-
-        }
-    );
-
+        button.classList.add("active");
+    });
 });
 
-
 // =========================================
-// ANIMAÇÃO DE ENTRADA
+// ANIMAÇÕES DOS ELEMENTOS
 // =========================================
 
-const revealObserver =
-    new IntersectionObserver(
+const revealElements = document.querySelectorAll(".reveal");
 
+let revealObserver = null;
+
+if ("IntersectionObserver" in window) {
+    revealObserver = new IntersectionObserver(
         entries => {
-
             entries.forEach(entry => {
-
-                if (
-                    entry.isIntersecting
-                ) {
-
-                    entry.target.classList.add(
-                        "visible"
-                    );
-
-                    revealObserver.unobserve(
-                        entry.target
-                    );
-
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    revealObserver.unobserve(entry.target);
                 }
-
             });
-
         },
-
         {
             threshold: 0.08
         }
-
     );
 
-
-document
-    .querySelectorAll(".reveal")
-    .forEach(element => {
-
-        revealObserver.observe(
-            element
-        );
-
+    revealElements.forEach(element => {
+        revealObserver.observe(element);
     });
-
-
-function animateVisibleElements(page) {
-
-    const elements =
-        page.querySelectorAll(
-            ".reveal"
-        );
-
-
-    elements.forEach(
-        (element, index) => {
-
-            element.classList.remove(
-                "visible"
-            );
-
-
-            setTimeout(
-                () => {
-
-                    element.classList.add(
-                        "visible"
-                    );
-
-                },
-
-                60 + index * 60
-
-            );
-
-        }
-    );
-
+} else {
+    revealElements.forEach(element => {
+        element.classList.add("visible");
+    });
 }
 
+function animateVisibleElements(page) {
+    if (!page) {
+        return;
+    }
+
+    const elements = page.querySelectorAll(".reveal");
+
+    elements.forEach((element, index) => {
+        element.classList.remove("visible");
+
+        setTimeout(() => {
+            element.classList.add("visible");
+        }, 60 + index * 60);
+    });
+}
 
 // =========================================
 // BUSCA GLOBAL
 // =========================================
 
-const globalSearch =
-    document.getElementById(
-        "globalSearch"
-    );
+const globalSearch = document.getElementById("globalSearch");
 
+document.addEventListener("keydown", event => {
+    if (
+        event.ctrlKey &&
+        event.key.toLowerCase() === "k"
+    ) {
+        event.preventDefault();
 
-document.addEventListener(
-    "keydown",
-    event => {
-
-        if (
-            event.ctrlKey &&
-            event.key.toLowerCase() === "k"
-        ) {
-
-            event.preventDefault();
-
-
-            if (globalSearch) {
-
-                globalSearch.focus();
-
-            }
-
+        if (globalSearch) {
+            globalSearch.focus();
         }
-
-
-        if (event.key === "Escape") {
-
-            closeSaleModal();
-            closeSidebar();
-
-        }
-
     }
-);
 
+    if (event.key === "Escape") {
+        closeSaleModal();
+        closeSidebar();
+    }
+});
 
 // =========================================
-// BUSCA DE VENDAS
+// BUSCA NA TABELA DE VENDAS
 // =========================================
 
-const tableSearch =
-    document.querySelector(
-        ".table-search"
-    );
-
+const tableSearch = document.querySelector(".table-search");
 
 if (tableSearch) {
+    tableSearch.addEventListener("input", event => {
+        const value = event.target.value
+            .toLowerCase()
+            .trim();
 
-    tableSearch.addEventListener(
-        "input",
-        event => {
+        const rows = document.querySelectorAll(".searchable-row");
 
-            const value =
-                event.target.value
-                    .toLowerCase()
-                    .trim();
+        rows.forEach(row => {
+            const text = row.textContent.toLowerCase();
 
-
-            const rows =
-                document.querySelectorAll(
-                    ".searchable-row"
-                );
-
-
-            rows.forEach(row => {
-
-                const text =
-                    row.textContent
-                        .toLowerCase();
-
-
-                row.classList.toggle(
-                    "search-hidden",
-                    !text.includes(value)
-                );
-
-            });
-
-        }
-    );
-
+            row.classList.toggle(
+                "search-hidden",
+                !text.includes(value)
+            );
+        });
+    });
 }
-
 
 // =========================================
 // BUSCA DE PRODUTOS
 // =========================================
 
-const productSearch =
-    document.querySelector(
-        ".product-search"
-    );
-
+const productSearch = document.querySelector(".product-search");
 
 if (productSearch) {
+    productSearch.addEventListener("input", event => {
+        const value = event.target.value
+            .toLowerCase()
+            .trim();
 
-    productSearch.addEventListener(
-        "input",
-        event => {
+        const products = document.querySelectorAll(
+            ".searchable-product"
+        );
 
-            const value =
-                event.target.value
-                    .toLowerCase()
-                    .trim();
+        products.forEach(product => {
+            const text = product.textContent.toLowerCase();
 
-
-            const products =
-                document.querySelectorAll(
-                    ".searchable-product"
-                );
-
-
-            products.forEach(product => {
-
-                const text =
-                    product.textContent
-                        .toLowerCase();
-
-
-                product.classList.toggle(
-                    "search-hidden",
-                    !text.includes(value)
-                );
-
-            });
-
-        }
-    );
-
+            product.classList.toggle(
+                "search-hidden",
+                !text.includes(value)
+            );
+        });
+    });
 }
-
 
 // =========================================
 // BUSCA DE CLIENTES
 // =========================================
 
-const clientSearch =
-    document.querySelector(
-        ".client-search"
-    );
-
+const clientSearch = document.querySelector(".client-search");
 
 if (clientSearch) {
+    clientSearch.addEventListener("input", event => {
+        const value = event.target.value
+            .toLowerCase()
+            .trim();
 
-    clientSearch.addEventListener(
-        "input",
-        event => {
+        const clients = document.querySelectorAll(
+            ".searchable-client"
+        );
 
-            const value =
-                event.target.value
-                    .toLowerCase()
-                    .trim();
+        clients.forEach(client => {
+            const text = client.textContent.toLowerCase();
 
-
-            const clients =
-                document.querySelectorAll(
-                    ".searchable-client"
-                );
-
-
-            clients.forEach(client => {
-
-                const text =
-                    client.textContent
-                        .toLowerCase();
-
-
-                client.classList.toggle(
-                    "search-hidden",
-                    !text.includes(value)
-                );
-
-            });
-
-        }
-    );
-
+            client.classList.toggle(
+                "search-hidden",
+                !text.includes(value)
+            );
+        });
+    });
 }
 
-
 // =========================================
-// MODAL NOVA VENDA
+// MODAL — NOVA VENDA
 // =========================================
 
-const saleModal =
-    document.getElementById(
-        "saleModal"
-    );
+const saleModal = document.getElementById("saleModal");
 
-const openSaleModalButton =
-    document.getElementById(
-        "openSaleModal"
-    );
+const openSaleModalButton = document.getElementById(
+    "openSaleModal"
+);
 
-const otherSaleButtons =
-    document.querySelectorAll(
-        ".open-sale-button"
-    );
+const otherSaleButtons = document.querySelectorAll(
+    ".open-sale-button"
+);
 
-const closeSaleModalButton =
-    document.getElementById(
-        "closeSaleModal"
-    );
+const closeSaleModalButton = document.getElementById(
+    "closeSaleModal"
+);
 
-const cancelSale =
-    document.getElementById(
-        "cancelSale"
-    );
+const cancelSale = document.getElementById("cancelSale");
 
-const saleForm =
-    document.getElementById(
-        "saleForm"
-    );
-
+const saleForm = document.getElementById("saleForm");
 
 function openSaleModal() {
-
     if (!saleModal) {
         return;
     }
 
+    saleModal.classList.add("active");
+    document.body.style.overflow = "hidden";
 
-    saleModal.classList.add(
-        "active"
-    );
+    setTimeout(() => {
+        const customerInput = document.getElementById(
+            "saleCustomer"
+        );
 
-
-    document.body.style.overflow =
-        "hidden";
-
-
-    setTimeout(
-        () => {
-
-            const customerInput =
-                document.getElementById(
-                    "saleCustomer"
-                );
-
-
-            if (customerInput) {
-
-                customerInput.focus();
-
-            }
-
-        },
-
-        200
-
-    );
-
+        if (customerInput) {
+            customerInput.focus();
+        }
+    }, 200);
 }
-
 
 function closeSaleModal() {
-
     if (!saleModal) {
         return;
     }
 
-
-    saleModal.classList.remove(
-        "active"
-    );
-
-
-    document.body.style.overflow =
-        "";
-
+    saleModal.classList.remove("active");
+    document.body.style.overflow = "";
 }
 
-
 if (openSaleModalButton) {
-
     openSaleModalButton.addEventListener(
         "click",
         openSaleModal
     );
-
 }
 
-
 otherSaleButtons.forEach(button => {
-
-    button.addEventListener(
-        "click",
-        openSaleModal
-    );
-
+    button.addEventListener("click", openSaleModal);
 });
 
-
 if (closeSaleModalButton) {
-
     closeSaleModalButton.addEventListener(
         "click",
         closeSaleModal
     );
-
 }
-
 
 if (cancelSale) {
-
-    cancelSale.addEventListener(
-        "click",
-        closeSaleModal
-    );
-
+    cancelSale.addEventListener("click", closeSaleModal);
 }
-
 
 if (saleModal) {
-
-    saleModal.addEventListener(
-        "click",
-        event => {
-
-            if (
-                event.target ===
-                saleModal
-            ) {
-
-                closeSaleModal();
-
-            }
-
+    saleModal.addEventListener("click", event => {
+        if (event.target === saleModal) {
+            closeSaleModal();
         }
-    );
-
+    });
 }
 
-
 // =========================================
-// FINALIZAR VENDA
+// FINALIZAR VENDA — COMPORTAMENTO ATUAL
 // =========================================
 
 if (saleForm) {
+    saleForm.addEventListener("submit", event => {
+        event.preventDefault();
 
-    saleForm.addEventListener(
-        "submit",
-        event => {
+        closeSaleModal();
 
-            event.preventDefault();
+        showToast(
+            "Venda registrada",
+            "Operação realizada com sucesso."
+        );
 
-
-            closeSaleModal();
-
-
-            showToast(
-                "Venda registrada",
-                "Operação realizada com sucesso."
-            );
-
-
-            saleForm.reset();
-
-        }
-    );
-
+        saleForm.reset();
+    });
 }
 
-
 // =========================================
-// TOAST
+// NOTIFICAÇÕES — TOAST
 // =========================================
 
-const toast =
-    document.getElementById(
-        "toast"
-    );
-
+const toast = document.getElementById("toast");
 
 let toastTimer;
 
-
-function showToast(
-    title,
-    message
-) {
-
+function showToast(title, message) {
     if (!toast) {
         return;
     }
 
-
-    const titleElement =
-        toast.querySelector(
-            "strong"
-        );
-
-    const messageElement =
-        toast.querySelector(
-            "span"
-        );
-
+    const titleElement = toast.querySelector("strong");
+    const messageElement = toast.querySelector("span");
 
     if (titleElement) {
-
-        titleElement.textContent =
-            title;
-
+        titleElement.textContent = title;
     }
-
 
     if (messageElement) {
-
-        messageElement.textContent =
-            message;
-
+        messageElement.textContent = message;
     }
 
+    toast.classList.add("show");
 
-    toast.classList.add(
-        "show"
-    );
+    clearTimeout(toastTimer);
 
-
-    clearTimeout(
-        toastTimer
-    );
-
-
-    toastTimer =
-        setTimeout(
-            () => {
-
-                toast.classList.remove(
-                    "show"
-                );
-
-            },
-
-            3200
-
-        );
-
+    toastTimer = setTimeout(() => {
+        toast.classList.remove("show");
+    }, 3200);
 }
 
-
 // =========================================
-// BUSCA GLOBAL SIMPLES
+// BUSCA GLOBAL POR NOME DA TELA
 // =========================================
 
 if (globalSearch) {
-
-    globalSearch.addEventListener(
-        "keydown",
-        event => {
-
-            if (
-                event.key !== "Enter"
-            ) {
-                return;
-            }
-
-
-            const search =
-                globalSearch.value
-                    .toLowerCase()
-                    .trim();
-
-
-            if (!search) {
-                return;
-            }
-
-
-            if (
-                search.includes(
-                    "venda"
-                )
-            ) {
-
-                openPage("vendas");
-
-            }
-
-            else if (
-                search.includes(
-                    "produto"
-                ) ||
-                search.includes(
-                    "estoque"
-                )
-            ) {
-
-                openPage("produtos");
-
-            }
-
-            else if (
-                search.includes(
-                    "cliente"
-                )
-            ) {
-
-                openPage("clientes");
-
-            }
-
-            else if (
-                search.includes(
-                    "finance"
-                ) ||
-                search.includes(
-                    "conta"
-                )
-            ) {
-
-                openPage(
-                    "financeiro"
-                );
-
-            }
-
-            else {
-
-                showToast(
-                    "Busca",
-                    `Nenhum resultado para "${globalSearch.value}".`
-                );
-
-            }
-
-
-            globalSearch.value =
-                "";
-
+    globalSearch.addEventListener("keydown", event => {
+        if (event.key !== "Enter") {
+            return;
         }
-    );
 
+        const search = globalSearch.value
+            .toLowerCase()
+            .trim();
+
+        if (!search) {
+            return;
+        }
+
+        if (search.includes("venda")) {
+            openPage("vendas");
+        } else if (
+            search.includes("produto") ||
+            search.includes("estoque")
+        ) {
+            openPage("produtos");
+        } else if (search.includes("cliente")) {
+            openPage("clientes");
+        } else if (
+            search.includes("finance") ||
+            search.includes("conta")
+        ) {
+            openPage("financeiro");
+        } else {
+            showToast(
+                "Busca",
+                `Nenhum resultado para "${globalSearch.value}".`
+            );
+        }
+
+        globalSearch.value = "";
+    });
 }
 
-
 // =========================================
-// INICIALIZAÇÃO
+// PRODUTOS — INTEGRAÇÃO COM O BACKEND FLASK
 // =========================================
 
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
+async function carregarProdutosDoBanco() {
+    try {
+        // Busca os produtos cadastrados no PostgreSQL
+        // por meio da API do backend Flask.
 
-        openPage(
-            "dashboard"
+        const resposta = await fetch(
+            "http://127.0.0.1:5000/api/produtos"
         );
 
+        if (!resposta.ok) {
+            throw new Error(
+                `Não foi possível buscar os produtos. HTTP ${resposta.status}`
+            );
+        }
+
+        const produtos = await resposta.json();
+
+        console.log(
+            "Produtos cadastrados no banco:",
+            produtos
+        );
+
+        // Confere se o backend retornou uma lista.
+
+        if (!Array.isArray(produtos)) {
+            throw new Error(
+                "A API não retornou uma lista de produtos."
+            );
+        }
+
+        // Local onde os cartões serão exibidos no HTML.
+
+        const listaProdutos = document.getElementById(
+            "lista-produtos"
+        );
+
+        if (!listaProdutos) {
+            console.warn(
+                'Elemento com id="lista-produtos" não encontrado no HTML.'
+            );
+
+            return;
+        }
+
+        // Remove os cartões de exemplo para mostrar
+        // os produtos reais vindos do banco.
+
+        listaProdutos.innerHTML = "";
+
+        // Mensagem caso ainda não haja produtos cadastrados.
+
+        if (produtos.length === 0) {
+            const mensagem = document.createElement("p");
+
+            mensagem.textContent =
+                "Nenhum produto cadastrado no banco de dados.";
+
+            listaProdutos.appendChild(mensagem);
+
+            return;
+        }
+
+        // Cria um cartão para cada produto retornado pela API.
+
+        produtos.forEach(produto => {
+            const card = document.createElement("article");
+
+            card.className =
+                "product-card searchable-product";
+
+            // Ícone do produto
+
+            const imagem = document.createElement("div");
+
+            imagem.className = "product-image";
+            imagem.textContent = "🛒";
+
+            // Categoria visual
+
+            const categoria = document.createElement("span");
+
+            categoria.className = "product-category";
+            categoria.textContent = "PRODUTO";
+
+            // Nome
+
+            const nome = document.createElement("h3");
+
+            nome.textContent = produto.nome ?? "Sem nome";
+
+            // Preço
+
+            const preco = document.createElement("strong");
+
+            preco.textContent = Number(
+                produto.preco
+            ).toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL"
+            });
+
+            // Quantidade em estoque
+
+            const estoque = document.createElement("span");
+
+            estoque.className = "product-status";
+
+            const quantidade = Number(
+                produto.quantidade_estoque
+            );
+
+            estoque.textContent = `${quantidade} unidades`;
+
+            if (quantidade <= 5) {
+                estoque.classList.add("danger-product");
+            }
+
+            // Monta o cartão completo.
+
+            card.append(
+                imagem,
+                categoria,
+                nome,
+                preco,
+                estoque
+            );
+
+            listaProdutos.appendChild(card);
+        });
+
+        console.log(
+            `${produtos.length} produto(s) exibido(s) na tela.`
+        );
+
+    } catch (erro) {
+        // Uma falha no backend não deve impedir
+        // a navegação pelas outras telas.
+
+        console.error(
+            "Erro ao carregar produtos:",
+            erro
+        );
     }
-);
+}
+
+// =========================================
+// INICIALIZAÇÃO DO SISTEMA
+// =========================================
+
+function iniciarSistema() {
+    openPage("dashboard");
+
+    // Carrega os produtos sem bloquear a navegação.
+    carregarProdutosDoBanco();
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener(
+        "DOMContentLoaded",
+        iniciarSistema
+    );
+} else {
+    iniciarSistema();
+}
